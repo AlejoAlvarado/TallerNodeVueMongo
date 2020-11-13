@@ -15,7 +15,7 @@ exports.create = function(req,res,next){
     let user = new User({
         name: req.body.name,
         username: req.body.username,
-        id: req.body.id,
+        userid: req.body.userid,
         password: req.body.password,
         photo: req.body.photo,
         state: req.body.state,
@@ -27,5 +27,15 @@ exports.create = function(req,res,next){
         }else{
             res.send("User guardado exitosamente")
         }
+    })
+}
+exports.edit = function (req,res,next){
+    User.findByIdAndUpdate(req.params.id,{$set: req.body}, (err,user)=>{
+        if(err){
+            return next(err)
+        }else{
+            res.send("El user ha sido editado correctamente")
+        }
+
     })
 }
