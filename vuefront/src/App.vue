@@ -1,7 +1,10 @@
 <template>
   <div class="form-wrapper">
     <label>Nombre: </label><br />
-    <input v-model="user.name" required /><br />
+    <input v-model="user.name.firstname" required /><br />
+
+    <label>Apellido: </label><br />
+    <input v-model="user.name.lastname" required /><br />
 
     <label>Nombre de usuario: </label><br />
     <input v-model="user.username" required /><br />
@@ -18,17 +21,24 @@
     <button color="success" class="mr-4" @click="sendChangesDepen()">
       Guardar
     </button>
+
+    <div>
+      <UserList />
+    </div>
   </div>
 </template>
 
 <script>
+import UserList from "./components/UserList";
 export default {
   name: "App",
-  components: {},
+  components: {
+    UserList,
+  },
   data() {
     return {
       user: {
-        name: "",
+        name: { firstname: "", lastname: "" },
         username: "",
         password: "",
         foto: "",
