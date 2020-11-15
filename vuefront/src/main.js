@@ -5,7 +5,9 @@ import axios from "axios";
 import VueAxios from "vue-axios";
 import UserList from "./components/UserList";
 
-const routes = [{ path: "/userlist", component: UserList }];
+const routes = [
+  { path: "/userlist", component: UserList }
+];
 
 Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
