@@ -7,7 +7,7 @@
     <input v-model="user.name.lastname" /><br />
 
     <label>Nombre de usuario: </label><br />
-    <input v-model="user.username" /><br />
+    <input v-model="user.username"  maxlength="8"/><br />
 
     <label>Tipo de identificación: </label><br />
     <input v-model="user.userid.idtype" /><br />
