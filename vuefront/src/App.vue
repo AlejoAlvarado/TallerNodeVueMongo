@@ -85,7 +85,7 @@ export default {
       axios.post("/users/create/", data).then((res) => {
         if (res.status >= 200 && res.status < 300) {
           console.log("Usuario guardado con éxito");
-          (this.user.name.firstname = ""),
+          (this.user.name.fistname = ""),
             (this.user.name.lastname = ""),
             (this.user.username = ""),
             (this.user.password = ""),
@@ -117,6 +117,7 @@ export default {
       axios.put(`/users/edit/${this.user._id}`, data).then((res) => {
         if (res.status >= 200 && res.status < 300) {
           console.log("El user ha sido editado");
+          this.editmode = false;
           (this.user.name.fistname = ""),
             (this.user.name.lastname = ""),
             (this.user.username = ""),
