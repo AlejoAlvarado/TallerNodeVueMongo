@@ -30,15 +30,12 @@
       class="mr-4"
       v-on:click="sendEditUser"
     >
-    
       Guardar
     </button>
 
     <button v-else color="success" class="mr-4" v-on:click="sendChangesUser">
       Crear
     </button>
-  
-     
 
     <div>
       <UserList @click="editUser" />
@@ -67,7 +64,6 @@ export default {
         id: "",
       },
       editmode: false,
-      
     };
   },
   methods: {
@@ -90,7 +86,7 @@ export default {
       axios.post("/users/create/", data).then((res) => {
         if (res.status >= 200 && res.status < 300) {
           alert("Usuario creado con exito!");
-          
+
           (this.user.name.fistname = ""),
             (this.user.name.lastname = ""),
             (this.user.username = ""),
@@ -99,8 +95,7 @@ export default {
             (this.user.active = ""),
             (this.user.userid.idtype = ""),
             (this.user.userid.idvalue = "");
-            this.user.state = false
-
+          this.user.state = false;
         } else {
           console.log("Ocurrió un error");
         }
@@ -127,8 +122,7 @@ export default {
       axios.defaults.baseURL = "http://localhost:3000";
       axios.put(`/users/edit/${this.user._id}`, data).then((res) => {
         if (res.status >= 200 && res.status < 300) {
-          
-           alert("Usuario editado con exito!");
+          alert("Usuario editado con exito!");
           this.editmode = false;
           (this.user.name.fistname = ""),
             (this.user.name.lastname = ""),
@@ -143,6 +137,9 @@ export default {
           console.log("Ocurrió un error");
         }
       });
+      setTimeout(function() {
+        Eventbus.$emit("getUsers");
+      }, 100);
     },
     editUser: function(user) {
       this.editmode = true;
