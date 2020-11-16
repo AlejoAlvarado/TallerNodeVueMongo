@@ -13,7 +13,7 @@
 <script>
 import axios from "axios";
 
-const url = "http://localhost:3000/users/";
+const url = "http://localhost:3000/users";
 
 export default {
   data() {
@@ -36,9 +36,7 @@ export default {
     //});
   },
   created() {
-    axios.get(url).then((result) => {
-      this.users = result.data;
-    });
+    this.getUsers();
   },
   methods: {
     saveEdit: function() {
@@ -46,6 +44,22 @@ export default {
     },
     editUser: function(user) {
       this.$emit("click", user);
+    },
+    removeUser: function(user) {
+      axios.defaults.baseURL = url;
+      axios.delete(url + "/delete/" + user._id).then((res) => {
+        if (res.status >= 200 && res.status < 300) {
+          console.log("delete exitoso");
+          this.getUsers();
+        } else {
+          console.log("No pudo borrarse al usuario");
+        }
+      });
+    },
+    getUsers() {
+      axios.get(url).then((result) => {
+        this.users = result.data;
+      });
     },
   },
 };

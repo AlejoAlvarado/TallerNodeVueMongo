@@ -69,7 +69,7 @@ export default {
     sendChangesUser: function() {
       let data = {
         name: {
-          fistname: this.user.name.firstname,
+          fistname: this.user.name.fistname,
           lastname: this.user.name.lastname,
         },
         username: this.user.username,
@@ -111,7 +111,7 @@ export default {
         userid: {
           idtype: this.user.userid.idtype,
           idvalue: this.user.userid.idvalue,
-        },        
+        },
       };
       axios.defaults.baseURL = "http://localhost:3000";
       axios.put(`/users/edit/${this.user._id}`, data).then((res) => {
