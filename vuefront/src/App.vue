@@ -1,7 +1,7 @@
 <template>
   <div class="form-wrapper">
     <label>Nombre: </label><br />
-    <input v-model="user.name.firstname" /><br />
+    <input v-model="user.name.fistname" /><br />
 
     <label>Apellido: </label><br />
     <input v-model="user.name.lastname" /><br />
@@ -54,7 +54,7 @@ export default {
   data() {
     return {
       user: {
-        name: { firstname: "", lastname: "" },
+        name: { fistname: "", lastname: "" },
         username: "",
         password: "",
         photo: "",

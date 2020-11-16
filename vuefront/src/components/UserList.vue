@@ -2,7 +2,7 @@
   <div>
     <ul id="userList">
       <li v-for="(user, index) in users" :key="index">
-        {{ user.name.firstname }} <button>Ver</button>
+        {{ user.name.fistname }} <button>Ver</button>
         <button v-on:click="editUser(user)">Editar</button>
         <button>Eliminar</button>
       </li>
