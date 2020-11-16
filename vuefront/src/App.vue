@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import Eventbus from "./bus";
 import UserList from "./components/UserList";
 import axios from "axios";
 export default {
@@ -85,7 +86,7 @@ export default {
       axios.post("/users/create/", data).then((res) => {
         if (res.status >= 200 && res.status < 300) {
           console.log("Usuario guardado con éxito");
-          (this.user.name.firstname = ""),
+          (this.user.name.fistname = ""),
             (this.user.name.lastname = ""),
             (this.user.username = ""),
             (this.user.password = ""),
@@ -97,6 +98,9 @@ export default {
           console.log("Ocurrió un error");
         }
       });
+      setTimeout(function() {
+        Eventbus.$emit("getUsers");
+      }, 100);
     },
     sendEditUser: function() {
       let data = {

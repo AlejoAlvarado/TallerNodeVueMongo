@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import Eventbus from "../bus";
 import axios from "axios";
 
 const url = "http://localhost:3000/users";
@@ -55,19 +56,15 @@ export default {
       },
     };
   },
-  watch: {
-    users: function() {
-      let users = {};
-
-      axios.get(url).then((result) => {
-        users = result.data;
+  mounted() {
+    Eventbus.$on("getUsers", () => {
+      axios.get(url + "/").then((result) => {
+        this.users = result.data;
+        console.log("get Users");
+        console.log(url);
+        console.log(result.data);
       });
-
-      return users;
-    },
-    //axios.get(url).then((result) => {
-    //  this.users = result.data;
-    //});
+    });
   },
   created() {
     this.getUsers();
@@ -91,7 +88,7 @@ export default {
       });
     },
     getUsers() {
-      axios.get(url).then((result) => {
+      axios.get(url + "/").then((result) => {
         this.users = result.data;
       });
     },
