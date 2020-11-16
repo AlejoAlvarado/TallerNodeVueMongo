@@ -22,7 +22,7 @@
     <input v-model="user.photo" /><br />
 
     <label>Activar usuario </label
-    ><input type="checkbox" id="checkbox" v-model="user.active" /><br />
+    ><input type="checkbox" id="checkbox" v-model="user.state" /><br />
 
     <button
       v-if="editmode"
@@ -59,7 +59,7 @@ export default {
         username: "",
         password: "",
         photo: "",
-        active: false,
+        state: false,
         userid: { idtype: "", idvalue: "" },
         id: "",
       },
@@ -76,7 +76,7 @@ export default {
         username: this.user.username,
         photo: this.user.photo,
         password: this.user.password,
-        state: this.user.active,
+        state: this.user.state,
         userid: {
           idtype: this.user.userid.idtype,
           idvalue: this.user.userid.idvalue,
@@ -94,6 +94,7 @@ export default {
             (this.user.active = ""),
             (this.user.userid.idtype = ""),
             (this.user.userid.idvalue = "");
+            this.user.state = false
         } else {
           console.log("Ocurrió un error");
         }
@@ -111,7 +112,7 @@ export default {
         username: this.user.username,
         photo: this.user.photo,
         password: this.user.password,
-        state: this.user.active,
+        state: this.user.state,
         userid: {
           idtype: this.user.userid.idtype,
           idvalue: this.user.userid.idvalue,
@@ -127,7 +128,7 @@ export default {
             (this.user.username = ""),
             (this.user.password = ""),
             (this.user.photo = ""),
-            (this.user.active = ""),
+            (this.user.state = ""),
             (this.user.userid.idtype = ""),
             (this.user.userid.idvalue = "");
           this.user._id = "";
@@ -143,7 +144,7 @@ export default {
         (this.user.username = user.username),
         (this.user.password = user.password),
         (this.user.photo = user.photo),
-        (this.user.active = user.active),
+        (this.user.state = user.state),
         (this.user.userid.idtype = user.userid.idtype),
         (this.user.userid.idvalue = user.userid.idvalue);
       this.user._id = user._id;
