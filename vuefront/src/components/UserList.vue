@@ -4,7 +4,7 @@
       <li v-for="(user, index) in users" :key="index">
         {{ user.name.fistname }} <button>Ver</button>
         <button v-on:click="editUser(user)">Editar</button>
-        <button>Eliminar</button>
+        <button v-on:click="removeUser(user)">Eliminar</button>
       </li>
     </ul>
   </div>

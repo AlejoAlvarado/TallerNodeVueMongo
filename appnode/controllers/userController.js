@@ -39,8 +39,6 @@ exports.edit = function (req, res, next) {
 };
 
 exports.delete = function (req, res, next) {
-  console.log("hola");
-  //req.params.id;
   User.findByIdAndRemove(req.params.id, (err, user) => {
     if (err) return next(err);
     res.send("El user ha sido removido exitosamente");
