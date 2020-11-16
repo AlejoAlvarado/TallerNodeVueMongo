@@ -101,7 +101,7 @@ export default {
     sendEditUser: function() {
       let data = {
         name: {
-          fistname: this.user.name.firstname,
+          fistname: this.user.name.fistname,
           lastname: this.user.name.lastname,
         },
         username: this.user.username,
@@ -111,13 +111,13 @@ export default {
         userid: {
           idtype: this.user.userid.idtype,
           idvalue: this.user.userid.idvalue,
-        },
+        },        
       };
       axios.defaults.baseURL = "http://localhost:3000";
-      axios.put(`/users/edit/${this.user.id}`, data).then((res) => {
+      axios.put(`/users/edit/${this.user._id}`, data).then((res) => {
         if (res.status >= 200 && res.status < 300) {
           console.log("El user ha sido editado");
-          (this.user.name.firstname = ""),
+          (this.user.name.fistname = ""),
             (this.user.name.lastname = ""),
             (this.user.username = ""),
             (this.user.password = ""),
@@ -125,7 +125,7 @@ export default {
             (this.user.active = ""),
             (this.user.userid.idtype = ""),
             (this.user.userid.idvalue = "");
-          this.user.id = "";
+          this.user._id = "";
         } else {
           console.log("Ocurrió un error");
         }
@@ -133,7 +133,7 @@ export default {
     },
     editUser: function(user) {
       this.editmode = true;
-      (this.user.name.firstname = user.name.firstname),
+      (this.user.name.fistname = user.name.fistname),
         (this.user.name.lastname = user.name.lastname),
         (this.user.username = user.username),
         (this.user.password = user.password),
@@ -141,7 +141,7 @@ export default {
         (this.user.active = user.active),
         (this.user.userid.idtype = user.userid.idtype),
         (this.user.userid.idvalue = user.userid.idvalue);
-      this.user.id = user.id;
+      this.user._id = user._id;
     },
   },
 };
