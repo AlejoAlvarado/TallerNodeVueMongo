@@ -2,8 +2,8 @@
   <div>
     <ul id="userList">
       <li v-for="(user, index) in users" :key="index">
-        {{ user.name.fistname }} <button>Ver</button>
-        <button v-on:click="saveEdit">Editar</button>
+        {{ user.name.firstname }} <button>Ver</button>
+        <button v-on:click="editUser(user)">Editar</button>
         <button>Eliminar</button>
       </li>
     </ul>
@@ -43,6 +43,9 @@ export default {
   methods: {
     saveEdit: function() {
       console.log("save");
+    },
+    editUser: function(user) {
+      this.$emit("click", user);
     },
   },
 };
