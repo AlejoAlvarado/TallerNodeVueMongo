@@ -2,43 +2,49 @@
   <div>
     <ul id="userList">
       <li v-for="(user, index) in users" :key="index">
-        {{ user.name.firstname }} <button>Ver</button> <button v-on:click="saveEdit">Editar</button>
+        {{ user.name.fistname }} <button>Ver</button>
+        <button v-on:click="saveEdit">Editar</button>
         <button>Eliminar</button>
-        
       </li>
     </ul>
-
-   
   </div>
 </template>
 
 <script>
-import { Fakeusers } from "../Data/users.js";
+import axios from "axios";
+
+const url = "http://localhost:3000/users/";
 
 export default {
   data() {
     return {
-      users: {},
-      user: {
-        name: { firstname: "", lastname: "" },
-        username: "",
-        password: "",
-        photo: "",
-        active: false,
-        userid:{idtype:"", idvalue:""},
-      },
+      users: "",
     };
   },
-  created() {
-    this.users = Fakeusers;
-  },
-  methods:{
-    
-    saveEdit: function(){
-      console.log("save")
+  watch: {
+    users: function() {
+      let users = {};
 
-    }
-  }
+      axios.get(url).then((result) => {
+        users = result.data;
+      });
+
+      return users;
+    },
+    //axios.get(url).then((result) => {
+    //  this.users = result.data;
+    //});
+  },
+  created() {
+    axios.get(url).then((result) => {
+      this.users = result.data;
+    });
+  },
+  methods: {
+    saveEdit: function() {
+      console.log("save");
+    },
+  },
 };
 </script>
 

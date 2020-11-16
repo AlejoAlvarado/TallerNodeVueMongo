@@ -12,7 +12,7 @@
     <label>Tipo de identificación: </label><br />
     <input v-model="user.userid.idtype" required /><br />
 
-     <label>Número de identificación: </label><br />
+    <label>Número de identificación: </label><br />
     <input v-model="user.userid.idvalue" required /><br />
 
     <label>Contraseña: </label><br />
@@ -50,16 +50,16 @@ export default {
         password: "",
         photo: "",
         active: false,
-        userid:{idtype:"", idvalue:""},
+        userid: { idtype: "", idvalue: "" },
       },
     };
   },
-  methods:{
-    sendChangesDepen: function(){
-      let data={
-        name:{
+  methods: {
+    sendChangesDepen: function() {
+      let data = {
+        name: {
           fistname: this.user.name.firstname,
-          lastname:this.user.name.lastname
+          lastname: this.user.name.lastname,
         },
         username: this.user.username,
         photo: this.user.photo,
@@ -67,23 +67,19 @@ export default {
         state: this.user.active,
         userid: {
           idtype: this.user.userid.idtype,
-          idvalue: this.user.userid.idvalue
+          idvalue: this.user.userid.idvalue,
+        },
+      };
+      axios.defaults.baseURL = "http://localhost:3000";
+      axios.post("/users/create/", data).then((res) => {
+        if (res.status >= 200 && res.status < 300) {
+          console.log("Usuario guardado con éxito");
+        } else {
+          console.log("Ocurrió un error");
         }
-
-      }
-      axios.defaults.baseURL = 'http://localhost:3000'
-      axios.post("/users/create/", data).then((res)=>{
-        if(res.status >= 200 && res.status<300){
-           console.log("Usuario guardado con éxito")
-
-        }else{
-          console.log("Ocurrió un error")
-        }
-      })
-     
-    }
-
-  }
+      });
+    },
+  },
 };
 </script>
 
