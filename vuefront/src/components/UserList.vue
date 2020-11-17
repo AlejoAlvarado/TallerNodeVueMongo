@@ -60,9 +60,9 @@ export default {
     Eventbus.$on("getUsers", () => {
       axios.get(url + "/").then((result) => {
         this.users = result.data;
-        console.log("get Users");
-        console.log(url);
-        console.log(result.data);
+       // console.log("get Users");
+       // console.log(url);
+        //console.log(result.data);
       });
     });
   },
@@ -80,7 +80,8 @@ export default {
       axios.defaults.baseURL = url;
       axios.delete(url + "/delete/" + user._id).then((res) => {
         if (res.status >= 200 && res.status < 300) {
-          console.log("delete exitoso");
+          alert("Usuario borrado con exito!");
+         // console.log("delete exitoso");
           this.getUsers();
         } else {
           console.log("No pudo borrarse al usuario");

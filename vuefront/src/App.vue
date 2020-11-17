@@ -102,7 +102,7 @@ export default {
       });
       setTimeout(function() {
         Eventbus.$emit("getUsers");
-      }, 100);
+      }, 300);
     },
     sendEditUser: function() {
       let data = {
