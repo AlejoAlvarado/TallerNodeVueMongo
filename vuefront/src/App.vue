@@ -139,7 +139,7 @@ export default {
       });
       setTimeout(function() {
         Eventbus.$emit("getUsers");
-      }, 100);
+      }, 300);
     },
     editUser: function(user) {
       this.editmode = true;
