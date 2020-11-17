@@ -34,7 +34,7 @@
 import Eventbus from "../bus";
 import axios from "axios";
 
-const url = "http://localhost:3000/users";
+const url = "https://tallernode-vue.herokuapp.com";
 
 export default {
   data() {

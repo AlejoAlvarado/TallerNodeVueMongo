@@ -82,7 +82,7 @@ export default {
           idvalue: this.user.userid.idvalue,
         },
       };
-      axios.defaults.baseURL = "http://localhost:3000";
+      axios.defaults.baseURL = "https://tallernode-vue.herokuapp.com";
       axios.post("/users/create/", data).then((res) => {
         if (res.status >= 200 && res.status < 300) {
           alert("Usuario creado con exito!");
@@ -119,7 +119,7 @@ export default {
           idvalue: this.user.userid.idvalue,
         },
       };
-      axios.defaults.baseURL = "http://localhost:3000";
+      axios.defaults.baseURL = "https://tallernode-vue.herokuapp.com";
       axios.put(`/users/edit/${this.user._id}`, data).then((res) => {
         if (res.status >= 200 && res.status < 300) {
           alert("Usuario editado con exito!");
